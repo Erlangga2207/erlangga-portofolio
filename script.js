@@ -436,8 +436,7 @@
   const el = document.getElementById('typewriter');
   if (!el) return;
   const phrases = [
-    'Frontend Developer 🖥️',
-    'Python Enthusiast 🐍',
+    'Vibe Coder 🙂',
     'UI / UX Tinkerer 🎨',
     'Open Source Learner 🌱',
     'Pembangun Mimpi Digital ✨',
@@ -534,18 +533,41 @@
   const note = document.getElementById('formNote');
   if (!form) return;
 
-  form.addEventListener('submit', e => {
+  const btn = form.querySelector('button[type="submit"]');
+  const btnLabel = btn ? btn.textContent : '';
+
+  form.addEventListener('submit', async e => {
     e.preventDefault();
     const name  = form.contactName.value.trim();
     const email = form.contactEmail.value.trim();
     const msg   = form.contactMsg.value.trim();
     if (!name || !email || !msg) { note.textContent = 'Semua kolom wajib diisi.'; return; }
-    const sub  = encodeURIComponent(`Pesan dari ${name} via Portfolio`);
-    const body = encodeURIComponent(`Halo Erlangga,\n\n${msg}\n\nSalam,\n${name}\n${email}`);
-    window.location.href = `mailto:erlanggae844@gmail.com?subject=${sub}&body=${body}`;
-    note.textContent = '✓ Membuka email client... Terima kasih, ' + name + '!';
-    form.reset();
-    setTimeout(() => { note.textContent = ''; }, 5000);
+
+    note.style.color = '';
+    note.textContent = 'Mengirim pesan...';
+    if (btn) { btn.disabled = true; }
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(form),
+      });
+      const data = await res.json();
+      if (data.success) {
+        note.style.color = '#34d399';
+        note.textContent = '✓ Pesan terkirim! Terima kasih, ' + name + '. Aku akan balas secepatnya.';
+        form.reset();
+      } else {
+        throw new Error(data.message || 'Gagal mengirim');
+      }
+    } catch (err) {
+      note.style.color = '#f87171';
+      note.textContent = '✕ Gagal mengirim pesan. Coba lagi, atau email langsung ke erlanggae844@gmail.com';
+    } finally {
+      if (btn) { btn.disabled = false; btn.textContent = btnLabel; }
+      setTimeout(() => { note.textContent = ''; note.style.color = ''; }, 8000);
+    }
   });
 })();
 
