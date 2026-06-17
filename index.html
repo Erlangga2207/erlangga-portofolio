@@ -504,17 +504,19 @@
           </div>
 
           <form class="contact-form glass-card reveal" id="contactForm" style="--delay:0.2s">
+            <input type="hidden" name="access_key" value="7235e2c2-60eb-4741-860e-184b22764fa1" />
+            <input type="hidden" name="subject" value="Pesan baru dari portofolio" />
             <div class="form-group">
               <label for="contactName">Nama</label>
-              <input type="text" id="contactName" placeholder="Nama kamu" required />
+              <input type="text" id="contactName" name="name" placeholder="Nama kamu" required />
             </div>
             <div class="form-group">
               <label for="contactEmail">Email</label>
-              <input type="email" id="contactEmail" placeholder="email@kamu.com" required />
+              <input type="email" id="contactEmail" name="email" placeholder="email@kamu.com" required />
             </div>
             <div class="form-group">
               <label for="contactMsg">Pesan</label>
-              <textarea id="contactMsg" rows="5" placeholder="Hai Erlangga, saya ingin..." required></textarea>
+              <textarea id="contactMsg" name="message" rows="5" placeholder="Hai Erlangga, saya ingin..." required></textarea>
             </div>
             <button type="submit" class="btn btn-primary btn-full">Kirim Pesan 📩</button>
             <p class="form-note" id="formNote"></p>
