@@ -1,0 +1,90 @@
+<!--
+  PROYEK
+
+  Cara menambah proyek:
+  1. Taruh screenshot di assets/img/projects/ (landscape, mis. 1600x900).
+  2. Salin satu blok <article class="project"> ... </article> di bawah, ubah isinya.
+     - data-category: "projek" atau "latihan"  (filter & jumlahnya dihitung otomatis)
+     - Tidak ada live demo / repo? Hapus baris <a> yang bersangkutan.
+  Urutan di file = urutan tampil. Nomor 01, 02, ... diisi otomatis.
+-->
+<section id="projects" class="section">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="section-title reveal"><span class="section-num">02</span>Proyek</h2>
+      <div class="filters" role="group" aria-label="Filter proyek">
+        <button class="chip is-active" data-filter="all" aria-pressed="true">Semua <span></span></button>
+        <button class="chip" data-filter="projek" aria-pressed="false">Proyek nyata <span></span></button>
+        <button class="chip" data-filter="latihan" aria-pressed="false">Latihan <span></span></button>
+      </div>
+    </div>
+
+    <div class="projects">
+
+      <article class="project reveal" data-category="projek">
+        <a class="project-media" href="https://elbimas.my.id/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+          <img src="assets/img/projects/elbimas.png" alt="" loading="lazy">
+        </a>
+        <div class="project-body">
+          <p class="project-meta"><span class="project-no"></span>Proyek nyata</p>
+          <h3>ELBIMAS</h3>
+          <p class="project-desc">Aplikasi pengelola keuangan pribadi berbahasa Indonesia: catat pemasukan &amp; pengeluaran, banyak dompet &amp; mata uang, anggaran bulanan, target tabungan, utang-piutang, transaksi berulang, dan laporan otomatis. Bisa di-install di HP sebagai PWA.</p>
+          <ul class="tags"><li>TypeScript</li><li>JavaScript</li><li>CSS</li><li>MySQL</li><li>PWA</li></ul>
+          <div class="project-links">
+            <a href="https://elbimas.my.id/" target="_blank" rel="noopener">Live demo ↗</a>
+            <a href="https://github.com/Erlangga2207/elbimas" target="_blank" rel="noopener">Kode ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project reveal" data-category="projek">
+        <a class="project-media" href="https://hdsfmushroom.com" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+          <img src="assets/img/projects/hdsf-mushroom.png" alt="" loading="lazy">
+        </a>
+        <div class="project-body">
+          <p class="project-meta"><span class="project-no"></span>Proyek nyata</p>
+          <h3>HDSF Mushroom</h3>
+          <p class="project-desc">Company profile UMKM penjual sekaligus pengepul jamur dari petani. Dilengkapi panel untuk mengelola setoran dan penjualan jamur dengan sistem FIFO. Dibangun dengan PHP Native.</p>
+          <ul class="tags"><li>PHP</li><li>MySQL</li><li>JavaScript</li><li>HTML</li><li>CSS</li></ul>
+          <div class="project-links">
+            <a href="https://hdsfmushroom.com" target="_blank" rel="noopener">Live demo ↗</a>
+            <a href="https://github.com/Erlangga2207/hdsf-mushroom" target="_blank" rel="noopener">Kode ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project reveal" data-category="latihan">
+        <a class="project-media" href="https://tiara-portfolio-nine.vercel.app/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+          <img src="assets/img/projects/tiara-portofolio.png" alt="" loading="lazy">
+        </a>
+        <div class="project-body">
+          <p class="project-meta"><span class="project-no"></span>Latihan</p>
+          <h3>Portofolio Tiara</h3>
+          <p class="project-desc">Website portofolio pribadi yang responsif: profil, keahlian, pengalaman kerja, dan galeri foto.</p>
+          <ul class="tags"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+          <div class="project-links">
+            <a href="https://tiara-portfolio-nine.vercel.app/" target="_blank" rel="noopener">Live demo ↗</a>
+            <a href="https://github.com/Erlangga2207/tiara-portfolio" target="_blank" rel="noopener">Kode ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project reveal" data-category="latihan">
+        <a class="project-media" href="https://portofolio-lang.vercel.app/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+          <img src="assets/img/projects/first-porto.png" alt="" loading="lazy">
+        </a>
+        <div class="project-body">
+          <p class="project-meta"><span class="project-no"></span>Latihan</p>
+          <h3>First Porto</h3>
+          <p class="project-desc">Portofolio pribadi pertama saya — titik awal belajar layout responsif, animasi, dan deploy ke Vercel.</p>
+          <ul class="tags"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+          <div class="project-links">
+            <a href="https://portofolio-lang.vercel.app/" target="_blank" rel="noopener">Live demo ↗</a>
+            <a href="https://github.com/Erlangga2207/portofolio-lang" target="_blank" rel="noopener">Kode ↗</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>

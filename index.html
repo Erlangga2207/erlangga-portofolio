@@ -2,553 +2,59 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Erlangga Ardiansyah — Frontend Developer & Web Enthusiast" />
-  <meta name="theme-color" content="#050510" />
-  <title>Erlangga — Galaxy Portfolio</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="ProfileCard.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="Erlangga Haryo Pangestu — mahasiswa TRPL & web developer. Kumpulan proyek, pengalaman, dan kontak." />
+  <meta name="theme-color" content="#f6f2ea" />
+  <!-- Pasang tema sebelum halaman digambar, supaya tidak berkedip.
+       Urutan: pilihan terakhir pengunjung → pengaturan HP/laptop. -->
+  <script>
+    (function () {
+      var t;
+      try { t = localStorage.getItem('theme'); } catch (e) {}
+      if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.dataset.theme = t;
+      document.querySelector('meta[name="theme-color"]').content = t === 'dark' ? '#151412' : '#f6f2ea';
+    })();
+  </script>
+  <meta property="og:title" content="Erlangga Haryo Pangestu — Portofolio" />
+  <meta property="og:description" content="Web developer & mahasiswa TRPL Politeknik Negeri Subang." />
+  <meta property="og:image" content="assets/img/profile.jpg" />
+  <title>Erlangga Haryo Pangestu — Portofolio</title>
+
+  <link rel="icon" href="assets/img/profile.jpg" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 <body>
 
-  <!-- ═══ LOADER ═══ -->
-  <div id="loader" aria-hidden="true">
-    <div class="loader-rings">
-      <span class="lr lr-1"></span>
-      <span class="lr lr-2"></span>
-      <span class="lr lr-3"></span>
-      <div class="loader-brand">&lt;<em>EA</em>/&gt;</div>
-    </div>
-    <p class="loader-label">Initializing Universe<span class="ldots"></span></p>
-    <div class="loader-track"><div id="loaderFill"></div></div>
-  </div>
+  <a class="skip-link" href="#main">Lewati ke konten</a>
 
-  <!-- ═══ CUSTOM CURSOR (desktop) ═══ -->
-  <div id="c-dot" aria-hidden="true"></div>
-  <div id="c-ring" aria-hidden="true"></div>
+  <!--
+    Isi halaman ada di folder /partials (satu file .html per bagian).
+    Tiap <div data-include="nama"> diganti dengan partials/nama.html oleh assets/js/include.js.
+    Buka lewat Laragon: http://erlangga-portofolio.test
 
-  <!-- ═══ FLUID CURSOR ═══ -->
-  <canvas id="fluid" aria-hidden="true"></canvas>
+    Mau tambah proyek? Edit partials/projects.html.
+  -->
 
-  <!-- ═══ AURORA WebGL ═══ -->
-  <canvas id="aurora-canvas" aria-hidden="true"></canvas>
+  <div data-include="nav"></div>
 
-  <!-- ═══ STARS ═══ -->
-  <canvas id="galaxy-canvas" aria-hidden="true"></canvas>
-
-  <!-- ═══ NAV ═══ -->
-  <nav id="navbar">
-    <div class="nav-logo">
-      <span class="logo-bracket">&lt;</span>Erlangga<span class="logo-bracket">/&gt;</span>
-    </div>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#about">Profil</a></li>
-      <li><a href="#skills">Skill</a></li>
-      <li><a href="#projects">Proyek</a></li>
-      <li><a href="#education">Pendidikan</a></li>
-      <li><a href="#contributions">Kontribusi</a></li>
-      <li><a href="#contact">Kontak</a></li>
-    </ul>
-  </nav>
-
-  <main>
-
-    <!-- ═══ HERO ═══ -->
-    <section id="hero">
-      <div class="hero-inner">
-
-        <!-- ProfileCard -->
-        <div class="pc-card-wrapper pc-hero-card" id="pcWrapper">
-          <div class="pc-behind"></div>
-          <div class="pc-card-shell" id="pcShell">
-            <section class="pc-card" id="pcCard">
-              <div class="pc-inside"></div>
-              <div class="pc-shine"></div>
-              <div class="pc-glare"></div>
-              <div class="pc-content pc-avatar-content">
-                <img src="assets/profile.jpg" class="avatar" alt="Erlangga Haryo Pangestu" />
-              </div>
-              <div class="pc-content">
-                <div class="pc-details">
-                  <h3>Erlangga</h3>
-                  <p>Vibe Coder</p>
-                </div>
-              </div>
-            </section>
-          </div>
-        </div>
-
-        <div class="hero-text">
-          <p class="hero-greeting">Halo, Dunia!</p>
-          <h1 class="hero-name">
-            <span class="glow-text">Erlangga</span>
-            <span class="surname glow-text-sub"> Haryo Pangestu</span>
-          </h1>
-          <div class="hero-typewriter">
-            <span id="typewriter"></span><span class="cursor">|</span>
-          </div>
-          <p class="hero-desc">
-            Seorang pengembang web yang bersemangat membangun antarmuka digital
-            yang bersih, fungsional, dan berkesan — satu baris kode dalam satu waktu.
-          </p>
-          <div class="hero-cta">
-            <a href="#projects" class="btn btn-primary">Lihat Proyekku</a>
-            <a href="#contact" class="btn btn-outline">Hubungi Saya</a>
-          </div>
-          <div class="hero-socials">
-            <a href="mailto:erlanggae844@gmail.com" class="social-chip" title="Email">
-              <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
-              Email
-            </a>
-            <a href="https://linkedin.com/in/erlangga-haryo-pangestu-3365b6417" target="_blank" rel="noopener" class="social-chip" title="LinkedIn">
-              <svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.44-2.13 2.93v5.68H9.37V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.59 0 4.26 2.36 4.26 5.43v6.31zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zm1.78 13.02H3.56V9h3.56v11.45zM22.23 0H1.77C.8 0 0 .77 0 1.72v20.56C0 23.23.8 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.2 0 22.23 0z"/></svg>
-              LinkedIn
-            </a>
-            <a href="https://github.com/Erlangga2207" target="_blank" rel="noopener" class="social-chip" title="GitHub">
-              <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.02c-3.34.72-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02.01 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.65.25 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.56 21.8 24 17.31 24 12 24 5.37 18.63 0 12 0z"/></svg>
-              GitHub
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="scroll-hint" aria-hidden="true">
-        <div class="scroll-arrow"></div>
-        <span>Scroll</span>
-      </div>
-    </section>
-
-    <!-- ═══ ABOUT ═══ -->
-    <section id="about" class="section">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">// 01</span>
-          <h2>Profil &amp; Tentang Diri</h2>
-          <div class="section-line"></div>
-          <span class="section-num" aria-hidden="true">01</span>
-        </div>
-        <div class="about-grid">
-          <div class="about-card glass-card reveal">
-            <div class="about-icon">👨🏻‍💻</div>
-            <h3>Siapa Saya</h3>
-            <p>
-              Saya adalah mahasiswa dan pengembang web yang antusias dengan dunia
-              teknologi. Saya gemar membangun proyek-proyek digital yang memberi
-              dampak nyata, mulai dari antarmuka pengguna yang elegan hingga
-              logika backend yang terstruktur.
-            </p>
-          </div>
-          <div class="about-card glass-card reveal" style="--delay:0.15s">
-            <div class="about-icon">💡</div>
-            <h3>Fokus Teknologi</h3>
-            <p>
-              Frontend Development (HTML, CSS, JavaScript), Python untuk scripting
-              dan data, serta ekosistem modern seperti React dan Node.js.
-              Saya percaya kode yang baik adalah kode yang bisa dibaca manusia.
-            </p>
-          </div>
-          <div class="about-card glass-card reveal" style="--delay:0.3s">
-            <div class="about-icon">🎯</div>
-            <h3>Tujuan Karier</h3>
-            <p>
-              Bergabung dengan tim yang berorientasi produk untuk membangun
-              aplikasi web yang scalable dan berdampak luas — sambil terus
-              belajar dan berkontribusi pada komunitas open source.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══ SKILLS ═══ -->
-    <section id="skills" class="section">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">// 02</span>
-          <h2>Skill &amp; Teknologi</h2>
-          <div class="section-line"></div>
-          <span class="section-num" aria-hidden="true">02</span>
-        </div>
-        <div class="skills-wrapper">
-          <!-- Language logo boxes -->
-          <div class="skill-group glass-card reveal">
-            <h3 class="skill-group-title">
-              <span class="skill-group-icon">💻</span> Bahasa Pemrograman
-            </h3>
-            <div class="lang-logos">
-              <div class="lang-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="HTML5" class="lang-logo-img" loading="lazy" />
-                <span>HTML5</span>
-              </div>
-              <div class="lang-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="CSS3" class="lang-logo-img" loading="lazy" />
-                <span>CSS3</span>
-              </div>
-              <div class="lang-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript" class="lang-logo-img" loading="lazy" />
-                <span>JavaScript</span>
-              </div>
-              <div class="lang-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python" class="lang-logo-img" loading="lazy" />
-                <span>Python</span>
-              </div>
-              <div class="lang-logo-box">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" alt="SQL" class="lang-logo-img" loading="lazy" />
-                <span>SQL</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Tools LogoLoop -->
-          <div class="skill-group glass-card reveal" style="--delay:0.2s">
-            <h3 class="skill-group-title">
-              <span class="skill-group-icon">🛠️</span> Framework &amp; Tools
-            </h3>
-            <div class="ll-root" id="llRoot1">
-              <div class="ll-fade-l" aria-hidden="true"></div>
-              <div class="ll-fade-r" aria-hidden="true"></div>
-              <div class="ll-track" id="llTrack1"></div>
-            </div>
-            <div class="ll-root ll-root-gap" id="llRoot2">
-              <div class="ll-fade-l" aria-hidden="true"></div>
-              <div class="ll-fade-r" aria-hidden="true"></div>
-              <div class="ll-track" id="llTrack2"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══ PROJECTS ═══ -->
-    <section id="projects" class="section">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">// 03</span>
-          <h2>Proyek</h2>
-          <div class="section-line"></div>
-          <span class="section-num" aria-hidden="true">03</span>
-        </div>
-        <p class="section-subtitle">
-          Kumpulan proyek yang menampilkan perjalanan belajar saya — dari latihan
-          tutorial hingga ide mandiri.
-        </p>
-
-        <div class="filter-tabs">
-          <button class="filter-btn active" data-filter="all">Semua</button>
-          <button class="filter-btn" data-filter="latihan">Latihan</button>
-          <button class="filter-btn" data-filter="projek">Projek</button>
-        </div>
-
-        <div class="projects-grid">
-          <article class="project-card glass-card reveal" data-category="projek">
-            <div class="project-img-wrap">
-              <div class="project-placeholder" style="--ph-color:#00d4ff">
-                <svg viewBox="0 0 80 80"><text y="50" x="10" font-size="40">☀️</text></svg>
-              </div>
-              <img class="project-img" src="assets/projects/hdsfmurhoom.png" alt="Screenshot HDSFMURHOOM" loading="lazy" onerror="this.style.display='none'">
-              <div class="project-overlay">
-                <a href="https://github.com/Erlangga2207/hdsf-mushroom.git" target="_blank" rel="noopener" class="overlay-btn">GitHub</a>
-                <a href="https://hdsfmushroom.com" class="overlay-btn">Live Demo</a>
-              </div>
-            </div>
-            <div class="project-body">
-              <div class="project-category">Projek</div>
-              <h3>HDSF MURHOOM</h3>
-              <p>Company profile UMKM HDSF Mushroom yang menjual sekaligus pengepul jamur dari para petani, di dalam website nya terdapat data untuk mengelola setoran dan penjualan jamur dengan sistem FIFO, projek ini menggunakan PHP Native.</p>
-              <div class="project-tech">
-                <span>HTML</span><span>CSS</span><span>JavaScript</span><span>PHP</span><span>MySQL</span>
-              </div>
-              <a href="https://github.com/Erlangga2207/hdsf-mushroom.git" target="_blank" rel="noopener" class="project-link">
-                <svg viewBox="0 0 24 24" width="16"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.02c-3.34.72-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02.01 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.65.25 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.56 21.8 24 17.31 24 12 24 5.37 18.63 0 12 0z"/></svg>
-                Lihat Repo
-              </a>
-            </div>
-          </article>
-
-          <article class="project-card glass-card reveal" data-category="projek" style="--delay:0.1s">
-            <div class="project-img-wrap">
-              <div class="project-placeholder" style="--ph-color:#7c3aed">
-                <svg viewBox="0 0 80 80"><text y="50" x="10" font-size="40">✅</text></svg>
-              </div>
-              <img class="project-img" src="assets/projects/tiara-portofolio.png" alt="Screenshot Portofolio Tiara" loading="lazy" onerror="this.style.display='none'">
-              <div class="project-overlay">
-                <a href="https://github.com/Erlangga2207/tiara-portfolio.git" target="_blank" rel="noopener" class="overlay-btn">GitHub</a>
-                <a href="https://tiara-portfolio-nine.vercel.app/" class="overlay-btn">Live Demo</a>
-              </div>
-            </div>
-            <div class="project-body">
-              <div class="project-category">Projek</div>
-              <h3>Portofolio Tiara</h3>
-              <p>Website portofolio pribadi yang dirancang dengan tampilan modern dan responsif. Halaman ini menampilkan informasi personal, keahlian, pengalaman kerja dan gallery untuk foto pribadi.</p>
-              <div class="project-tech">
-                <span>HTML</span><span>CSS</span><span>JavaScript</span>
-              </div>
-              <a href="https://github.com/Erlangga2207/tiara-portfolio.git" target="_blank" rel="noopener" class="project-link">
-                <svg viewBox="0 0 24 24" width="16"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.02c-3.34.72-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02.01 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.65.25 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.56 21.8 24 17.31 24 12 24 5.37 18.63 0 12 0z"/></svg>
-                Lihat Repo
-              </a>
-            </div>
-          </article>
-
-          <article class="project-card glass-card reveal" data-category="projek" style="--delay:0.2s">
-            <div class="project-img-wrap">
-              <div class="project-placeholder" style="--ph-color:#06b6d4">
-                <svg viewBox="0 0 80 80"><text y="50" x="10" font-size="40">🔢</text></svg>
-              </div>
-              <img class="project-img" src="assets/projects/erlangga-portofolio.png" alt="Screenshot Portofolio Erlangga" loading="lazy" onerror="this.style.display='none'">
-              <div class="project-overlay">
-                <a href="https://github.com/Erlangga2207" target="_blank" rel="noopener" class="overlay-btn">GitHub</a>
-                <a href="https://erlangga-portofolio.vercel.app/" class="overlay-btn">Live Demo</a>
-              </div>
-            </div>
-            <div class="project-body">
-              <div class="project-category">Projek</div>
-              <h3>Portofolio Erlangga</h3>
-              <p>Website portofolio pribadi yang dibuat menggunakan komponen dari reactbit, yang menampilkan profil pribadi, keahlian, pendidikan, dan pengalaman kerja, serta projek yang sudah dikerjakan.</p>
-              <div class="project-tech">
-                <span>HTML</span><span>CSS</span><span>JavaScript</span>
-              </div>
-              <a href="https://github.com/Erlangga2207" target="_blank" rel="noopener" class="project-link">
-                <svg viewBox="0 0 24 24" width="16"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.02c-3.34.72-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02.01 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.65.25 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.56 21.8 24 17.31 24 12 24 5.37 18.63 0 12 0z"/></svg>
-                Lihat Repo
-              </a>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══ EDUCATION ═══ -->
-    <section id="education" class="section">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">// 04</span>
-          <h2>Pendidikan, Pengalaman &amp; Sertifikasi</h2>
-          <div class="section-line"></div>
-          <span class="section-num" aria-hidden="true">04</span>
-        </div>
-        <div class="edu-timeline">
-          <div class="timeline-item reveal">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content glass-card">
-              <div class="timeline-icon">🎓</div>
-              <div class="timeline-meta">
-                <span class="timeline-date">2025 – Sekarang</span>
-                <span class="timeline-badge formal">Formal</span>
-              </div>
-              <h3>TRPL (Teknik Rekayasa Perangkat Lunak)</h3>
-              <p class="timeline-org">Politeknik Negeri Subang</p>
-              <p>Mempelajari ilmu komputer, algoritma, struktur data, rekayasa perangkat lunak, pengembangan aplikasi web/mobile, mengerjakan projek real dengan mitra dan pengembangan sistem.</p>
-            </div>
-          </div>
-          <div class="timeline-item reveal" style="--delay:0.15s">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content glass-card">
-              <div class="timeline-icon">🎓</div>
-              <div class="timeline-meta">
-                <span class="timeline-date">2022 - 2025</span>
-                <span class="timeline-badge formal">Formal</span>
-              </div>
-              <h3>RPL (Rekayasa Perangkat Lunak)</h3>
-              <p class="timeline-org">SMKN 1 Pusakanagara</p>
-              <p>Mempelajari dasar-dasar ilmu komputer, algoritma, struktur data, rekayasa perangkat lunak, dan pengembangan sistem.</p>
-            </div>
-          </div>
-          <div class="timeline-item reveal" style="--delay:0.3s">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content glass-card">
-              <div class="timeline-icon">🧑🏻‍💼</div>
-              <div class="timeline-meta">
-                <span class="timeline-date">2024</span>
-                <span class="timeline-badge sertif">Pengalaman</span>
-              </div>
-              <h3>PKL (Praktik Kerja Lapangan)</h3>
-              <p class="timeline-org">PT. Chakra Tunggal Elektindo</p>
-              <p>Mengerjakan dan membuat wire harness untuk mobil, motor, dan alat berat.</p>
-            </div>
-          </div>
-          <div class="timeline-item reveal" style="--delay:0.45s">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content glass-card">
-              <div class="timeline-icon">📜</div>
-              <div class="timeline-meta">
-                <span class="timeline-date">2024</span>
-                <span class="timeline-badge sertif">Sertifikat</span>
-              </div>
-              <h3>Pelatihan bersama pendamping profesional</h3>
-              <p class="timeline-org">PT. Fath Force</p>
-              <p>Mempelajari cara membuat website menggunakan laravel dengan standar industry, serta deployment, dan maintenance.</p>
-            </div>
-          </div>
-          <div class="timeline-item reveal" style="--delay:0.6s">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content glass-card">
-              <div class="timeline-icon">⭐</div>
-              <div class="timeline-meta">
-                <span class="timeline-date">2025</span>
-                <span class="timeline-badge kursus">Kursus Online</span>
-              </div>
-              <h3>Mempelajari Penggunaan AI</h3>
-              <p class="timeline-org">Dicoding</p>
-              <p>Mempelajari cara menggunakan AI untuk membantu dalam pengembangan perangkat lunak, serta deployment, dan maintenance.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══ CONTRIBUTIONS ═══ -->
-    <section id="contributions" class="section">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">// 05</span>
-          <h2>Kontribusi &amp; Aktivitas</h2>
-          <div class="section-line"></div>
-          <span class="section-num" aria-hidden="true">05</span>
-        </div>
-        <div class="contrib-grid">
-          <div class="contrib-card glass-card reveal">
-            <div class="contrib-header">
-              <svg viewBox="0 0 24 24" width="28"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.02c-3.34.72-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02.01 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.65.25 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.56 21.8 24 17.31 24 12 24 5.37 18.63 0 12 0z"/></svg>
-              <h3>GitHub Activity</h3>
-            </div>
-            <div class="contrib-stats">
-              <div class="stat-bubble">
-                <span class="stat-num" data-target="50">0</span>+
-                <span class="stat-label">Commits</span>
-              </div>
-              <div class="stat-bubble">
-                <span class="stat-num" data-target="8">0</span>
-                <span class="stat-label">Repositories</span>
-              </div>
-              <div class="stat-bubble">
-                <span class="stat-num" data-target="6">0</span>
-                <span class="stat-label">Bulan Aktif</span>
-              </div>
-            </div>
-            <p class="contrib-desc">Melakukan commit secara rutin — konsistensi lebih penting dari jumlah repo. Aktif mendorong perubahan setiap minggu sebagai kebiasaan belajar.</p>
-            <a href="https://github.com/Erlangga2207" target="_blank" rel="noopener" class="btn btn-outline-sm">Kunjungi Profil GitHub →</a>
-          </div>
-
-          <div class="contrib-card glass-card reveal" style="--delay:0.2s">
-            <div class="contrib-header">
-              <svg viewBox="0 0 24 24" width="28"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-              <h3>Open Source</h3>
-            </div>
-            <div class="oss-list">
-              <div class="oss-item">
-                <span class="oss-badge pr">PR</span>
-                <div><strong>Perbaikan typo dokumentasi</strong><p>first-contributions/first-contributions</p></div>
-              </div>
-              <div class="oss-item">
-                <span class="oss-badge issue">Issue</span>
-                <div><strong>Laporkan bug link broken</strong><p>Dicoding Community Resources</p></div>
-              </div>
-              <div class="oss-item">
-                <span class="oss-badge review">Review</span>
-                <div><strong>Code review teman se-angkatan</strong><p>Kolaborasi proyek kampus</p></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══ CONTACT ═══ -->
-    <section id="contact" class="section">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">// 06</span>
-          <h2>Kontak</h2>
-          <div class="section-line"></div>
-          <span class="section-num" aria-hidden="true">06</span>
-        </div>
-        <div class="contact-wrap">
-          <div class="contact-intro reveal">
-            <h3>Mari Berkolaborasi!</h3>
-            <p>Terbuka untuk peluang kerja, kolaborasi proyek, atau sekadar ngobrol soal teknologi. Kirim pesan dan saya akan membalas secepat mungkin.</p>
-            <div class="contact-links">
-              <a href="mailto:erlanggae844@gmail.com" class="contact-item">
-                <div class="contact-icon-wrap">
-                  <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
-                </div>
-                <div>
-                  <span class="contact-label">Email</span>
-                  <span class="contact-value">erlanggae844@gmail.com</span>
-                </div>
-              </a>
-              <a href="https://linkedin.com/in/erlangga-haryo-pangestu-3365b6417" target="_blank" rel="noopener" class="contact-item">
-                <div class="contact-icon-wrap">
-                  <svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.44-2.13 2.93v5.68H9.37V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.59 0 4.26 2.36 4.26 5.43v6.31zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zm1.78 13.02H3.56V9h3.56v11.45zM22.23 0H1.77C.8 0 0 .77 0 1.72v20.56C0 23.23.8 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.2 0 22.23 0z"/></svg>
-                </div>
-                <div>
-                  <span class="contact-label">LinkedIn</span>
-                  <span class="contact-value">linkedin.com/in/erlangga-haryo-pangestu</span>
-                </div>
-              </a>
-              <a href="https://github.com/Erlangga2207" target="_blank" rel="noopener" class="contact-item">
-                <div class="contact-icon-wrap">
-                  <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.02c-3.34.72-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02.01 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.65.25 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.56 21.8 24 17.31 24 12 24 5.37 18.63 0 12 0z"/></svg>
-                </div>
-                <div>
-                  <span class="contact-label">GitHub</span>
-                  <span class="contact-value">github.com/Erlangga2207</span>
-                </div>
-              </a>
-            </div>
-          </div>
-
-          <form class="contact-form glass-card reveal" id="contactForm" style="--delay:0.2s">
-            <input type="hidden" name="access_key" value="7235e2c2-60eb-4741-860e-184b22764fa1" />
-            <input type="hidden" name="subject" value="Pesan baru dari portofolio" />
-            <div class="form-group">
-              <label for="contactName">Nama</label>
-              <input type="text" id="contactName" name="name" placeholder="Nama kamu" required />
-            </div>
-            <div class="form-group">
-              <label for="contactEmail">Email</label>
-              <input type="email" id="contactEmail" name="email" placeholder="email@kamu.com" required />
-            </div>
-            <div class="form-group">
-              <label for="contactMsg">Pesan</label>
-              <textarea id="contactMsg" name="message" rows="5" placeholder="Hai Erlangga, saya ingin..." required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary btn-full">Kirim Pesan 📩</button>
-            <p class="form-note" id="formNote"></p>
-          </form>
-        </div>
-      </div>
-    </section>
-
+  <main id="main">
+    <div data-include="hero"></div>
+    <div data-include="about"></div>
+    <div data-include="projects"></div>
+    <div data-include="skills"></div>
+    <div data-include="education"></div>
+    <div data-include="contributions"></div>
+    <div data-include="contact"></div>
   </main>
 
-  <!-- ═══ FOOTER ═══ -->
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-logo">
-        <span class="logo-bracket">&lt;</span>Erlangga<span class="logo-bracket">/&gt;</span>
-      </div>
-      <p class="footer-copy">
-        Dibuat dengan secangkir kopi ☕ ·
-        <span id="footerYear"></span>
-      </p>
-      <div class="footer-socials">
-        <a href="mailto:erlanggae844@gmail.com" title="Email" aria-label="Email">✉</a>
-        <a href="https://github.com/Erlangga2207" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub">Git</a>
-        <a href="https://linkedin.com/in/erlangga-haryo-pangestu-3365b6417" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn">LI</a>
-      </div>
-    </div>
-  </footer>
+  <div data-include="footer"></div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
-  <script src="script.js"></script>
-  <script src="splash-cursor.js"></script>
+  <script src="assets/js/include.js"></script>
 </body>
 </html>
